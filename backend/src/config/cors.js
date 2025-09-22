@@ -1,4 +1,4 @@
-import env from "./env";
+import env from "./env.js";
 
 const devOrigins = [
   "http://localhost:3000",
@@ -9,14 +9,12 @@ const devOrigins = [
 ];
 
 const allowedOrigins =
-  env.nodeEnv === "PROD" 
-    ? ["http://localhost:5173"] 
-    : devOrigins;    
+  env.nodeEnv === "PROD" ? ["http://localhost:5173"] : devOrigins;
 
 export const corsOptions = {
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); 
+      callback(null, true);
     } else {
       console.warn(`CORS blocked request from: ${origin}`);
       callback(new Error("Not allowed by CORS"));

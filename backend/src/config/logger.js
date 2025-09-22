@@ -3,13 +3,12 @@ import DailyRotateFile from "winston-daily-rotate-file";
 import path from "path";
 import fs from "fs";
 
-// Ensure logs directory exists
 const logDir = "logs";
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
 
-// Common log format (JSON + timestamp)
+// Common log format
 const fileLogFormat = winston.format.combine(
   winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
   winston.format.errors({ stack: true }),
@@ -17,7 +16,7 @@ const fileLogFormat = winston.format.combine(
   winston.format.json(),
 );
 
-// Pretty console format (color + timestamp)
+// Pretty console format
 const consoleLogFormat = winston.format.combine(
   winston.format.colorize(),
   winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
