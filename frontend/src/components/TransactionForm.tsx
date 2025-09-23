@@ -11,17 +11,43 @@ interface TransactionFormProps {
 }
 
 const categories = {
-  income: ['Salary', 'Bonus', 'Investment', 'Other Income'],
+  income: [
+    "Salary",
+    "Bonus",
+    "Freelancing / Consulting",
+    "Business",
+    "Rental Income",
+    "Investments",
+    "Dividends",
+    "Interest Income",
+    "Refunds / Reimbursements",
+    "Gifts",
+    "Other Income"
+  ],
   expense: [
-    'Groceries',
-    'Transport',
-    'Entertainment',
-    'Utilities',
-    'Medical',
-    'Shopping',
-    'Dining',
-    'Rent',
-    'Other Expense',
+    "Groceries",
+    "Transport",
+    "Utilities",
+    "Rent",
+    "Medical",
+    "Insurance",
+    "Dining",
+    "Entertainment",
+    "Shopping",
+    "Subscriptions",
+    "Travel",
+    "Debt Repayment",
+    "Loan EMI",
+    "Taxes",
+    "Savings & Investments",
+    "Education",
+    "Childcare",
+    "Gifts & Donations",
+    "Family & Kids",
+    "Personal Care",
+    "Household",
+    "Pet Care",
+    "Other Expense",
   ],
 };
 
@@ -101,7 +127,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ onSubmit, transaction
           control={control}
           rules={{
             required: 'Amount is required',
-            valueAsNumber: true,
             validate: (value) => value > 0 || 'Amount must be greater than 0',
           }}
           render={({ field }) => (

@@ -8,8 +8,40 @@ interface FilterControlsProps {
 }
 
 const categories = [
-  "salary", "bonus", "investment", "other_income", "groceries", "transport",
-  "entertainment", "utilities", "medical", "shopping", "dining", "rent", "other_expense"
+  "Salary",
+  "Bonus",
+  "Freelancing / Consulting",
+  "Business",
+  "Rental Income",
+  "Investments",
+  "Dividends",
+  "Interest Income",
+  "Refunds / Reimbursements",
+  "Gifts",
+  "Other Income",
+  "Groceries",
+  "Transport",
+  "Utilities",
+  "Rent",
+  "Medical",
+  "Insurance",
+  "Dining",
+  "Entertainment",
+  "Shopping",
+  "Subscriptions",
+  "Travel",
+  "Debt Repayment",
+  "Loan EMI",
+  "Taxes",
+  "Savings & Investments",
+  "Education",
+  "Childcare",
+  "Gifts & Donations",
+  "Family & Kids",
+  "Personal Care",
+  "Household",
+  "Pet Care",
+  "Other Expense",
 ];
 
 const FilterControls: React.FC<FilterControlsProps> = ({ onFilterChange }) => {

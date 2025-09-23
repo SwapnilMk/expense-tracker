@@ -25,19 +25,40 @@ const transactionSchema = new mongoose.Schema(
       required: [true, "Category is required"],
       trim: true,
       enum: [
-        "salary",
-        "bonus",
-        "investment",
-        "other_income",
-        "groceries",
-        "transport",
-        "entertainment",
-        "utilities",
-        "medical",
-        "shopping",
-        "dining",
-        "rent",
-        "other_expense",
+        "Salary",
+        "Bonus",
+        "Freelancing / Consulting",
+        "Business",
+        "Rental Income",
+        "Investments",
+        "Dividends",
+        "Interest Income",
+        "Refunds / Reimbursements",
+        "Gifts",
+        "Other Income",
+        "Groceries",
+        "Transport",
+        "Utilities",
+        "Rent",
+        "Medical",
+        "Insurance",
+        "Dining",
+        "Entertainment",
+        "Shopping",
+        "Subscriptions",
+        "Travel",
+        "Debt Repayment",
+        "Loan EMI",
+        "Taxes",
+        "Savings & Investments",
+        "Education",
+        "Childcare",
+        "Gifts & Donations",
+        "Family & Kids",
+        "Personal Care",
+        "Household",
+        "Pet Care",
+        "Other Expense",
       ],
     },
     date: {
@@ -57,7 +78,7 @@ const transactionSchema = new mongoose.Schema(
 
 transactionSchema.index({ type: 1, category: 1 });
 transactionSchema.index({ date: -1 });
-transactionSchema.index({ userId: 1 }); 
+transactionSchema.index({ userId: 1 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);
 

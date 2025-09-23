@@ -57,6 +57,9 @@ This is a full-stack expense tracker application built with the MERN stack (Mong
 
     ```env
     PORT=3000
+    NODE_ENV=DEV
+    FRONTEND_URL=http://localhost:5173/
+    BACKEND_URL=http://localhost:3000/
     MONGODB_URI=your_mongodb_connection_string
     ```
 
