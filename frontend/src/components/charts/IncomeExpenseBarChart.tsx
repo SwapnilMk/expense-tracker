@@ -55,7 +55,7 @@ const IncomeExpenseBarChart: React.FC<ChartProps> = ({ filters }) => {
             color: "#2e7d32", 
           },
         ]}
-        height={250}
+        height={450}
       />
     </Box>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
 import FilterControls from '../components/FilterControls';
 import TransactionList from '../components/TransactionList';
@@ -69,32 +69,41 @@ const TransactionsPage: React.FC = () => {
   };
 
   return (
-    <Box>
-      <Typography variant="h4" sx={{ mb: 3, fontWeight: 'bold' }}>
-        Transaction History
-      </Typography>
-      <Paper sx={{ p: 2, mb: 3 }}>
+      <Box>
+        <Typography
+          variant="h4"
+          sx={{
+            mb: { xs: 2, md: 3 },
+            fontWeight: 'bold',
+            textAlign: { xs: 'center', md: 'left' }
+          }}
+        >
+          Transaction History
+        </Typography>
+
         <FilterControls onFilterChange={handleFilterChange} />
-      </Paper>
-      <TransactionList
-        filters={filters}
-        onEdit={handleOpenEditModal}
-        onDelete={handleOpenDeleteDialog}
-      />
-      <TransactionModal
-        open={isModalOpen}
-        onClose={handleCloseModal}
-        onSubmit={handleEditSubmit}
-        transaction={editingTransaction}
-      />
-      <DeleteConfirmationDialog
-        open={isDeleteDialogOpen}
-        onClose={handleCloseDeleteDialog}
-        onConfirm={handleDeleteConfirm}
-        title="Delete Transaction"
-        description="Are you sure you want to delete this transaction? This action cannot be undone."
-      />
-    </Box>
+
+        <TransactionList
+          filters={filters}
+          onEdit={handleOpenEditModal}
+          onDelete={handleOpenDeleteDialog}
+        />
+
+        <TransactionModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          onSubmit={handleEditSubmit}
+          transaction={editingTransaction}
+        />
+
+        <DeleteConfirmationDialog
+          open={isDeleteDialogOpen}
+          onClose={handleCloseDeleteDialog}
+          onConfirm={handleDeleteConfirm}
+          title="Delete Transaction"
+          description="Are you sure you want to delete this transaction? This action cannot be undone."
+        />
+      </Box>
   );
 };
 

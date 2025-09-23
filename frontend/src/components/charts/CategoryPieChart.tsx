@@ -61,7 +61,7 @@ const CategoryPieChart: React.FC<ChartProps> = ({ filters }) => {
             cornerRadius: 5,
           },
         ]}
-        height={250}
+        height={450}
       />
     </Box>
   );
