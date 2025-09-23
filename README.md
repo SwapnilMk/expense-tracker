@@ -2,58 +2,74 @@
 
 This is a full-stack expense tracker application built with the MERN stack (MongoDB, Express, React, Node.js). It allows users to add, view, and manage their income and expenses in a visually intuitive way.
 
+## 🖼️ Screenshots
+
+**Overview**
+![Overview](https://raw.githubusercontent.com/SwapnilMk/expense-tracker/refs/heads/master/frontend/src/assets/overview.png)
+
+**Transaction History**
+![Transaction History](https://raw.githubusercontent.com/SwapnilMk/expense-tracker/refs/heads/master/frontend/src/assets/transactionhistory.png)
+
+**Add Transactions**
+![Add Transactions](https://raw.githubusercontent.com/SwapnilMk/expense-tracker/refs/heads/master/frontend/src/assets/addtrasnaction.png)
+
+**Overview (Dark Mode)**
+![Overview Dark](https://raw.githubusercontent.com/SwapnilMk/expense-tracker/refs/heads/master/frontend/src/assets/overview-dark.png)
+
+---
+
 ## Features
 
-*   **CRUD operations:** Add, view, update, and delete transactions.
-*   **Filter transactions:** Filter by type (income/expense), category, and date.
-*   **Visual charts:** Pie and bar charts to visualize income vs. expenses.
-*   **User-friendly interface:** Built with React and Material-UI (MUI).
-*   **State management:** Redux Toolkit for managing application state.
-*   **Error handling and validation:** Proper validation and error handling for all APIs and forms.
+* **CRUD operations:** Add, view, update, and delete transactions.
+* **Filter transactions:** Filter by type (income/expense), category, and date.
+* **Visual charts:** Pie and bar charts to visualize income vs. expenses.
+* **User-friendly interface:** Built with React and Material-UI (MUI).
+* **State management:** Redux Toolkit for managing application state.
+* **Error handling and validation:** Proper validation and error handling for all APIs and forms.
 
 ## Tech Stack
 
 **Backend:**
 
-*   **Framework:** Node.js, Express
-*   **Database:** MongoDB
-*   **ODM:** Mongoose
-*   **API Testing:** Postman
-*   **Other:** CORS, dotenv, Winston (for logging)
+* **Framework:** Node.js, Express
+* **Database:** MongoDB
+* **ODM:** Mongoose
+* **API Testing:** Postman
+* **Other:** CORS, dotenv, Winston (for logging)
 
 **Frontend:**
 
-*   **Framework:** React, Vite
-*   **UI Library:** Material-UI (MUI)
-*   **State Management:** Redux Toolkit
-*   **Charts:** MUI X Charts
-*   **HTTP Client:** Axios
-*   **Routing:** React Router
+* **Framework:** React, Vite
+* **UI Library:** Material-UI (MUI)
+* **State Management:** Redux Toolkit
+* **Charts:** MUI X Charts
+* **HTTP Client:** Axios
+* **Routing:** React Router
 
 ## Prerequisites
 
-*   Node.js (v18 or higher)
-*   npm (v8 or higher)
-*   MongoDB (local or Atlas)
+* Node.js (v18 or higher)
+* npm (v8 or higher)
+* MongoDB (local or Atlas)
 
 ## Installation and Setup
 
 ### Backend
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
 
     ```bash
     git clone https://github.com/SwapnilMk/expense-tracker.git
     cd expense-tracker/backend
     ```
 
-2.  **Install dependencies:**
+2. **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Create a `.env` file** in the `backend` directory and add the following environment variables:
+3. **Create a `.env` file** in the `backend` directory and add the following environment variables:
 
     ```env
     PORT=3000
@@ -63,7 +79,7 @@ This is a full-stack expense tracker application built with the MERN stack (Mong
     MONGODB_URI=your_mongodb_connection_string
     ```
 
-4.  **Run the backend server:**
+4. **Run the backend server:**
 
     ```bash
     npm run dev
@@ -73,25 +89,25 @@ This is a full-stack expense tracker application built with the MERN stack (Mong
 
 ### Frontend
 
-1.  **Navigate to the `frontend` directory:**
+1. **Navigate to the `frontend` directory:**
 
     ```bash
     cd ../frontend
     ```
 
-2.  **Install dependencies:**
+2. **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Create a `.env` file** in the `frontend` directory and add the following environment variable:
+3. **Create a `.env` file** in the `frontend` directory and add the following environment variable:
 
     ```env
     VITE_API_BASE_URL=http://localhost:3000
     ```
 
-4.  **Run the frontend development server:**
+4. **Run the frontend development server:**
 
     ```bash
     npm run dev
@@ -103,17 +119,17 @@ This is a full-stack expense tracker application built with the MERN stack (Mong
 
 ### Backend
 
-*   `npm start`: Start the production server.
-*   `npm run dev`: Start the development server with Nodemon.
-*   `npm run lint`: Lint the code using ESLint.
-*   `npm run format`: Format the code using Prettier.
+* `npm start`: Start the production server.
+* `npm run dev`: Start the development server with Nodemon.
+* `npm run lint`: Lint the code using ESLint.
+* `npm run format`: Format the code using Prettier.
 
 ### Frontend
 
-*   `npm run dev`: Start the development server.
-*   `npm run build`: Build the application for production.
-*   `npm run lint`: Lint the code using ESLint.
-*   `npm run preview`: Preview the production build.
+* `npm run dev`: Start the development server.
+* `npm run build`: Build the application for production.
+* `npm run lint`: Lint the code using ESLint.
+* `npm run preview`: Preview the production build.
 
 ## API Endpoints
 
