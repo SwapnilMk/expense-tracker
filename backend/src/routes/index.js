@@ -28,18 +28,7 @@ router.post(
 
 router.get("/", validateQueryParams, handleValidationErrors, getTransactions);
 
-router.get("/:id", getTransactionById);
-
-router.put(
-  "/:id",
-  validateTransaction,
-  handleValidationErrors,
-  updateTransaction,
-);
-
-router.delete("/:id", deleteTransaction);
-
-// Analytics Routes
+// Analytics Routes must come before the /:id route
 router.get(
   "/summary",
   validateSummaryQuery,
@@ -53,5 +42,16 @@ router.get(
   handleValidationErrors,
   getCategoryBreakdown,
 );
+
+router.get("/:id", getTransactionById);
+
+router.put(
+  "/:id",
+  validateTransaction,
+  handleValidationErrors,
+  updateTransaction,
+);
+
+router.delete("/:id", deleteTransaction);
 
 export default router;

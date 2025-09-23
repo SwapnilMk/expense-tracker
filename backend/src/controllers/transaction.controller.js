@@ -45,14 +45,11 @@ export const getTransactions = async (req, res) => {
       limit = 10,
     } = req.query;
 
-    const filters = {
-      type: type || undefined,
-      category: category || undefined,
-      startDate: startDate ? new Date(startDate) : undefined,
-      endDate: endDate ? new Date(endDate) : undefined,
-      page: parseInt(page),
-      limit: parseInt(limit),
-    };
+    const filters = { page: parseInt(page), limit: parseInt(limit) };
+    if (type) filters.type = type;
+    if (category) filters.category = category;
+    if (startDate) filters.startDate = new Date(startDate);
+    if (endDate) filters.endDate = new Date(endDate);
 
     const transactionsData = await getTransactionsService(filters);
 
@@ -184,12 +181,11 @@ export const getSummary = async (req, res) => {
   try {
     const { type, category, startDate, endDate } = req.query;
 
-    const filters = {
-      type: type || undefined,
-      category: category || undefined,
-      startDate: startDate ? new Date(startDate) : undefined,
-      endDate: endDate ? new Date(endDate) : undefined,
-    };
+    const filters = {};
+    if (type) filters.type = type;
+    if (category) filters.category = category;
+    if (startDate) filters.startDate = new Date(startDate);
+    if (endDate) filters.endDate = new Date(endDate);
 
     const summary = await calculateSummaryService(filters);
 
@@ -213,11 +209,10 @@ export const getCategoryBreakdown = async (req, res) => {
   try {
     const { type, startDate, endDate } = req.query;
 
-    const filters = {
-      type: type || undefined,
-      startDate: startDate ? new Date(startDate) : undefined,
-      endDate: endDate ? new Date(endDate) : undefined,
-    };
+    const filters = {};
+    if (type) filters.type = type;
+    if (startDate) filters.startDate = new Date(startDate);
+    if (endDate) filters.endDate = new Date(endDate);
 
     const breakdown = await getCategoryBreakdownService(filters);
 
