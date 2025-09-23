@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import { Box, Typography, Snackbar, Alert, Paper } from "@mui/material";
-import FilterControls from "../components/FilterControls";
-import TransactionList from "../components/TransactionList";
-import TransactionModal from "../components/TransactionModal";
+import React, { useState } from 'react';
+import { Box, Typography, Paper } from '@mui/material';
+import toast from 'react-hot-toast';
+import FilterControls from '../components/FilterControls';
+import TransactionList from '../components/TransactionList';
+import TransactionModal from '../components/TransactionModal';
+import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
 import {
   useUpdateTransactionMutation,
   useDeleteTransactionMutation,
-} from "../features/transactions/transactionApiSlice";
-import type { NewTransaction, Transaction, TransactionFilters } from "../types";
+} from '../features/transactions/transactionApiSlice';
+import type { NewTransaction, Transaction, TransactionFilters } from '../types';
 
 const TransactionsPage: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [filters, setFilters] = useState<Partial<TransactionFilters>>({});
-  const [notification, setNotification] = useState<{ message: string; severity: "success" | "error" } | null>(null);
 
   const [updateTransaction] = useUpdateTransactionMutation();
   const [deleteTransaction] = useDeleteTransactionMutation();
@@ -32,23 +35,34 @@ const TransactionsPage: React.FC = () => {
     if (!id) return;
     try {
       await updateTransaction({ ...data, id }).unwrap();
-      setNotification({ message: "Transaction updated successfully!", severity: "success" });
+      toast.success('Transaction updated successfully!');
       handleCloseModal();
-    } catch (error) {
-      setNotification({ message: "An error occurred while updating.", severity: "error" });
+    } catch {
+      toast.error('An error occurred while updating.');
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if(window.confirm("Are you sure you want to delete this transaction?")) {
-        try {
-            await deleteTransaction(id).unwrap();
-            setNotification({ message: "Transaction deleted successfully!", severity: "success" });
-        } catch (error) {
-            setNotification({ message: "Failed to delete transaction.", severity: "error" });
-        }
+  const handleOpenDeleteDialog = (id: string) => {
+    setDeletingId(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleCloseDeleteDialog = () => {
+    setDeletingId(null);
+    setDeleteDialogOpen(false);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deletingId) return;
+    try {
+      await deleteTransaction(deletingId).unwrap();
+      toast.success('Transaction deleted successfully!');
+      handleCloseDeleteDialog();
+    } catch {
+      toast.error('Failed to delete transaction.');
+      handleCloseDeleteDialog();
     }
-  }
+  };
 
   const handleFilterChange = (newFilters: Partial<TransactionFilters>) => {
     setFilters(newFilters);
@@ -56,22 +70,30 @@ const TransactionsPage: React.FC = () => {
 
   return (
     <Box>
-        <Typography variant="h4" sx={{ mb: 3, fontWeight: 'bold' }}>Transaction History</Typography>
-        <Paper sx={{ p: 2, mb: 3 }}>
-            <FilterControls onFilterChange={handleFilterChange} />
-        </Paper>
-        <TransactionList filters={filters} onEdit={handleOpenEditModal} onDelete={handleDelete} />
-        <TransactionModal
-            open={isModalOpen}
-            onClose={handleCloseModal}
-            onSubmit={handleEditSubmit}
-            transaction={editingTransaction}
-        />
-        <Snackbar open={!!notification} autoHideDuration={6000} onClose={() => setNotification(null)}>
-            <Alert onClose={() => setNotification(null)} severity={notification?.severity} sx={{ width: '100%' }}>
-            {notification?.message}
-            </Alert>
-        </Snackbar>
+      <Typography variant="h4" sx={{ mb: 3, fontWeight: 'bold' }}>
+        Transaction History
+      </Typography>
+      <Paper sx={{ p: 2, mb: 3 }}>
+        <FilterControls onFilterChange={handleFilterChange} />
+      </Paper>
+      <TransactionList
+        filters={filters}
+        onEdit={handleOpenEditModal}
+        onDelete={handleOpenDeleteDialog}
+      />
+      <TransactionModal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleEditSubmit}
+        transaction={editingTransaction}
+      />
+      <DeleteConfirmationDialog
+        open={isDeleteDialogOpen}
+        onClose={handleCloseDeleteDialog}
+        onConfirm={handleDeleteConfirm}
+        title="Delete Transaction"
+        description="Are you sure you want to delete this transaction? This action cannot be undone."
+      />
     </Box>
   );
 };

@@ -20,6 +20,7 @@ export const transactionApiSlice = createApi({
         url: "/",
         params: filters,
       }),
+      transformResponse: (response: { data: PaginatedTransactions }) => response.data,
       providesTags: ["Transaction"],
     }),
     getSummary: builder.query<Summary, Partial<TransactionFilters>>({
@@ -27,6 +28,7 @@ export const transactionApiSlice = createApi({
         url: "/summary",
         params: filters,
       }),
+      transformResponse: (response: { data: Summary }) => response.data,
       providesTags: ["Summary"],
     }),
     getCategoryBreakdown: builder.query<CategoryBreakdown[], Partial<TransactionFilters>>({
@@ -34,6 +36,7 @@ export const transactionApiSlice = createApi({
             url: '/categories',
             params: filters,
         }),
+        transformResponse: (response: { data: CategoryBreakdown[] }) => response.data,
         providesTags: ['CategoryBreakdown']
     }),
     addTransaction: builder.mutation<Transaction, NewTransaction>({

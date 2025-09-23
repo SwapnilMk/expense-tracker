@@ -1,19 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { store } from "./app/store";
-import theme from "./theme/theme";
 import App from "./App.tsx";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import "./index.css";
+import { ThemeProvider } from "./context/ThemeContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <CssBaseline />
           <App />
